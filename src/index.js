@@ -8,7 +8,7 @@ async function start (){
     try {
         await client.connect(); // 1. conectamos con el cliente
        app.locals.ddbbClient = client; // 2. Lo guardamos en el locals para que se acceda desde las rutas
-       app.listen(4563, () => console.log('Server on port 4563'))
+       app.listen(4564, () => console.log('Server on port 4564'))
     } catch (err) {
         console.err('Error en el servidor: ', err);
     }
