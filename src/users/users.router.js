@@ -6,13 +6,14 @@ import { getAllUsersCtrl,
          deleteUserByIdCtrl, 
          putUserCtrl
          } from './users.controller.js';
+import { getUserInfo } from './users.controller.js';
 
 const router = express.Router(); // asi creo un router en una variable
 
 // defino las rutas dentro del router
 
 router.route('/')
-    .get(getAllUsersCtrl) // obtener todos los estudiantes (R)
+    .get(getUserInfo) // obtener todos los estudiantes (R)
     .post(createUserCtrl); // crear un estudiante (C)
 
 router.route('/:id')
