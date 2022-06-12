@@ -2,17 +2,13 @@ import nodemailer from 'nodemailer';
 
 
 export const sendValidationEmail = async (to, url) => {
-    // Only needed if you don't have a real mail account for testing
-  const testAccount = await nodemailer.createTestAccount();
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    service:'gmail',
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
+      user: 'watchdb.noreply@gmail.com',
+      pass: 'igkxjikmnsgqttea' // naturally, replace both with your real credentials or an application-specific password
+    }
   });
 
   // send mail with defined transport object
@@ -296,5 +292,6 @@ export const sendValidationEmail = async (to, url) => {
   });
 
   console.log("Message sent: %s", info.messageId);
+  console.log("Message sent to: %s", to);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }

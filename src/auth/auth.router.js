@@ -1,7 +1,6 @@
 import express from "express";
-import {registerCtrl, validateEmailCtrl, loginCtrl} from './auth.controller.js'
+import { registerCtrl, validateEmailCtrl, loginCtrl } from './auth.controller.js'
 import { validateUser } from "./auth.middleware.js";
-
 
 const router = express.Router();
 

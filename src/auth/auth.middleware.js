@@ -1,13 +1,13 @@
 import * as EmailValidator from 'email-validator';
 import jwt from 'jsonwebtoken';
-import  { jwt_secret } from './auth.secrets.js';
+import { jwt_secret } from './auth.secrets.js';
 
 /**
  * Validar que el email es correcto
  * ....
  * Si no es correcto, devolvemos un 400 (Bad Request)
  */
- export const validateUser = (req, res, next) => {
+export const validateUser = (req, res, next) => {
     if (EmailValidator.validate(req.body.email) && req.body.age >= 18) {
         next();
     } else {
@@ -31,6 +31,6 @@ export const validateAuth = (req, res, next) => {
     } catch (err) {
         // el token NO es válido o no hay token
         console.error(err);
-        res.sendStatus(401);
+        res.status(401).json({ message: 'No authorized', error: true });
     }
 }

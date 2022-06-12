@@ -10,6 +10,5 @@ app.use(cors());
 app.use(express.json())
 
 app.use(express.json()); // permitimos que el app process JSON en el body de la request
-app.get('/ping',(_req,res) => res.send('pong'));
 app.use('/auth', authRouter);
-app.use('/users', usersRouter); // ahora en /students se encuentran TODAS las rutas y subrutas definidas por stundentRouter
+app.use('/users', validateAuth, usersRouter); // ahora en /students se encuentran TODAS las rutas y subrutas definidas por stundentRouter
