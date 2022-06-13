@@ -25,7 +25,7 @@ export const registerCtrl = async (req, res) => {
             await createValidationToken(req);
             // paso 4
             //ojo que el host es el de nuestra aplicación de react
-            sendValidationEmail(req.body.email, `http://localhost:4565/validate?token=${token}`)
+            sendValidationEmail(req.body.email, `http://localhost:3000/validate?token=${token}`)
             res.status(201).json({ message: 'User created', error: false });
         } else {
             // mando un 409(conflict) porque ya existe el usuario en BBDD

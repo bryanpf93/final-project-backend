@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import {app} from './app.js'
 
 // const PORT = process.env.PORT || 4564;
-export const PORT = process.env.PORT || 4565;
+export const PORT = process.env.PORT || 4566;
 const URI = "mongodb+srv://bryanpf93:verdeyxoco123@final-project-back.rpu5svp.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(URI);
 
