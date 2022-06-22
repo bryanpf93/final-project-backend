@@ -1,4 +1,5 @@
 import express from 'express'
+import { deleteFavoritesUserCtrl, getFavoritesUserCtrl, updateFavoritesUserCtrl } from '../favorites/favorites.controller.js';
 import {
     getAllUsersCtrl,
     getUsertByIdCtrl,
@@ -20,5 +21,9 @@ router.route('/:id')
     .put(putUserCtrl)    // actualizar un estudiante por su ID (U)
     .delete(deleteUserByIdCtrl);
 
+router.route('/:id/favorites')
+    .get(getFavoritesUserCtrl)
+    .patch(updateFavoritesUserCtrl)
+    .delete(deleteFavoritesUserCtrl);
 
 export default router; // exporto el router para que se pueda usar en app.js

@@ -69,7 +69,11 @@ export const loginCtrl = async (req, res) => {
     if (user !== null) {
         // existe el usuario con esas condiciones
         const token = jwt.sign({ email: user.email, hola: 'bootcamp' }, jwt_secret); // paso 2
-        res.status(201).json({ access_token: token }); // paso 3
+        res.status(201).json({ 
+            access_token: token,
+            user_id: user._id,
+            user_email: user.email,
+        }); // paso 3
     } else {
         res.status(404).json({ message: 'User not found', error: true });
     }
