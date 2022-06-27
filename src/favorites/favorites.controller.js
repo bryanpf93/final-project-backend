@@ -26,7 +26,8 @@ export const updateFavoritesUserCtrl = async (req, res) => {
 
     if (favoritesUser === null) {
         const response = await favorites.insertOne({ user, favorites: [favorite] });
-        res.status(200).json({ response });
+        const favoritesUser = await favorites.findOne({ user })
+        res.status(200).json({ data: { favorites: favoritesUser ? favoritesUser.favorites: [] } });
     } else {
         const isFavoriteAlreadyAdded = !!favoritesUser.favorites.find(f => f.id === favorite.id);
     
@@ -37,8 +38,9 @@ export const updateFavoritesUserCtrl = async (req, res) => {
                 },
             };
             
-            const response = await favorites.updateOne({ user }, updateDoc);
-            res.status(200).json({ response });
+            await favorites.updateOne({ user }, updateDoc);
+            const favoritesUser = await favorites.findOne({ user })
+            res.status(200).json({ data: { favorites: favoritesUser ? favoritesUser.favorites: [] } });
         } else {
             res.status(409).json({ message: 'Media has already added', error: true });
         }
@@ -56,6 +58,7 @@ export const deleteFavoritesUserCtrl = async (req, res) => {
         },
     };
     
-    const response = await favorites.updateOne({ user }, updateDoc);
-    res.status(200).json({ response });
-};
+    await favorites.updateOne({ user }, updateDoc);
+    const favoritesUser = await favorites.findOne({ user })
+    res.status(200).json({ data: { favorites: favoritesUser ? favoritesUser.favorites: [] } });
+}
